@@ -4,14 +4,13 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"net/http/httputil"
 	"net/url"
 	"os"
 )
 
 func setupReverseProxy(path string, port string, target string) {
 	u, _ := url.Parse(target)
-	http.Handle(path, httputil.NewSingleHostReverseProxy(u))
+	http.Handle(path, NewSingleHostReverseProxy(u))
 
 	http.ListenAndServe(port, nil)
 }
